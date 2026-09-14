@@ -1,0 +1,28 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.pyc
+
+# Documentos, informes y enunciados (entregables académicos fuera del repo de código)
+*.pdf
+*.docx
+*.tex
+entrega_informe/
+build_full_report.py
+generate_report.py
+informe_comparativo_punto1.md
+logo.png
+figura1_arquitectura.png
+
+# Especificaciones SDD y recibos de desarrollo
+.atl/
+openspec/
+RECEIPT-*.md
+
+# Scratch & temporary conversion text files
+ejemplo_texto.txt
+enunciado_texto.txt
+informe_paginas*.txt
