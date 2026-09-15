@@ -105,13 +105,30 @@ assert.strictEqual(AppStatus.FINISHED, 'Terminado');
 assert.strictEqual(AppStatus.PAUSED, 'Pausado');
 console.log('  [PASS] Spanish AppStatus values verified');
 
-// Test autoRun pause behavior
-console.log('Verifying: AutoRun PAUSED state...');
+// Test autoRun pause behavior and immediate first step
+console.log('Verifying: AutoRun PAUSED state and immediate first step...');
 const pauseState = new AppState();
 pauseState.init('AG', 'AG', AlgorithmType.NEEDLEMAN_WUNSCH);
 assert.strictEqual(pauseState.status, AppStatus.INITIALIZED);
+assert.strictEqual(pauseState.currentStepIndex, -1);
 pauseState.startAutoRun();
+assert.strictEqual(pauseState.currentStepIndex, 0, 'First step must be calculated immediately on startAutoRun');
 assert.strictEqual(pauseState.status, AppStatus.COMPUTING);
 pauseState.stopAutoRun();
 assert.strictEqual(pauseState.status, AppStatus.PAUSED);
-console.log('  [PASS] AutoRun PAUSED state transition verified');
+console.log('  [PASS] AutoRun PAUSED state and immediate first step verified');
+
+// Test setSpeed clamping bounds [200ms, 3000ms]
+console.log('Verifying: setSpeed clamping (min 200ms, max 3000ms)...');
+const speedState = new AppState();
+assert.strictEqual(speedState.speedMs, 200);
+speedState.setSpeed(50);
+assert.strictEqual(speedState.speedMs, 200, 'Speed must clamp to minimum 200ms');
+speedState.setSpeed(1500);
+assert.strictEqual(speedState.speedMs, 1500);
+speedState.setSpeed(3000);
+assert.strictEqual(speedState.speedMs, 3000);
+speedState.setSpeed(5000);
+assert.strictEqual(speedState.speedMs, 3000, 'Speed must clamp to maximum 3000ms');
+console.log('  [PASS] setSpeed clamping verified');
+

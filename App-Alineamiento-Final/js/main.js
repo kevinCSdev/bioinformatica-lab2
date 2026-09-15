@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   speedSlider.addEventListener('input', (e) => {
     const val = Number(e.target.value);
-    speedLabel.textContent = `${val}ms`;
+    speedLabel.textContent = val >= 1000 ? `${val / 1000}s` : `${val}ms`;
     appState.setSpeed(val);
   });
 

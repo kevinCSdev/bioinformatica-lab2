@@ -420,6 +420,14 @@ assert(lastRowBottomRendered <= containerHeight,
 
 console.log('  [PASS] TC4 asymmetric matrix (9 rows x 3 cols) vertical containment verified (all 9 rows visible)');
 
+// 9. Invariants: Speed Slider Configuration (min 200ms, max 3000ms)
+console.log('\n--- Section 9: Speed Slider Bounds Invariants ---');
+assert(indexHtml.includes('id="speed-slider"'), 'Missing #speed-slider input in index.html');
+assert(indexHtml.includes('min="200"'), 'Speed slider must have min="200"');
+assert(indexHtml.includes('max="3000"'), 'Speed slider must have max="3000" (3 seconds)');
+console.log('  [PASS] Speed slider min="200" and max="3000" (3s) verified');
+
 console.log('\nAll UI Redesign, Sidebar Form Controls, and Spanish Normalization invariants validated successfully!');
+
 
 

@@ -144,6 +144,14 @@ export class AppState {
 
     this.status = AppStatus.COMPUTING;
     this._notify('AUTORUN_START');
+
+    // Calculate first position immediately without waiting for interval
+    const advanced = this.stepForward();
+    if (!advanced || this.status === AppStatus.FINISHED) {
+      this.stopAutoRun();
+      return;
+    }
+
     this.autoRunTimer = setInterval(() => {
       const advanced = this.stepForward();
       if (!advanced || this.status === AppStatus.FINISHED) {
@@ -218,7 +226,7 @@ export class AppState {
    * @param {number} ms
    */
   setSpeed(ms) {
-    this.speedMs = Math.max(30, Math.min(1500, ms));
+    this.speedMs = Math.max(200, Math.min(3000, ms));
     if (this.autoRunTimer) {
       this.stopAutoRun();
       this.startAutoRun();
