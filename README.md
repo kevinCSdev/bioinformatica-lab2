@@ -1,7 +1,5 @@
 # Laboratorio 2: Alineamiento de Secuencias y Programación Dinámica
 **Bioinformática — Universidad del Bío-Bío**  
-**Estudiante:** Kevin Cárdenas  
-**Profesora:** Tatiana Gutiérrez
 
 ---
 
